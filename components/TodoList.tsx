@@ -332,9 +332,9 @@ export default function TodoList({ session }: { session: Session }) {
                 </thead>
                 <tbody>
                   {teamMembers.map((member, index) => (
-                    <tr key={index}>
-                      <td className="border p-2">{index + 1}</td>
-                      <td className="border p-2">{member}</td>
+                    <tr key={index}  style={{border:"1px solid black"}}>
+                      <td className="border p-2" style={{border:"1px solid black"}}>{index + 1}</td>
+                      <td className="border p-2"  style={{border:"1px solid black"}}>{member}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -345,23 +345,23 @@ export default function TodoList({ session }: { session: Session }) {
           {teamDetails &&
             teamDetails.length > 0 &&
             teamDetails.map((team: any, teamIndex: number) => (
-              <div key={teamIndex} className="my-4">
-                <h1 className="text-lg mb-4 mt-4 font-bold">Team Members</h1>
-                <h3 className="text-mg mb-4 font-bold">
-                  Team Name: <span style={{color:"orange",fontSize:"2.5vh"}}>{team.team_name}</span>
+              <div key={teamIndex} className="my-4 flex flex-col justify-center" >
+                {/* <h1 className="text-lg mb-4 mt-4 font-bold">Team Members</h1> */}
+                <h3 className="text-mg mb-4 mt-4 font-bold rounded-lg p-2 mx-auto flex items-center justify-center w-1/2 bg-gray-200"  style={{border:"1px solid black"}}>
+                  Team Name:&nbsp; <span style={{color:"orange",fontSize:"2.5vh"}}> {team.team_name}</span>
                 </h3>
-                <table className="border-collapse border w-full">
+                <table className="border-collapse  border w-full"  style={{border:"1px solid black"}}>
                   <thead>
-                    <tr className="bg-gray-200">
-                      <th className="border p-2">S.No</th>
-                      <th className="border p-2">Member</th>
+                    <tr className="bg-gray-200 "  style={{border:"1px solid black"}}>
+                      <th className="border p-2"  style={{border:"1px solid black"}}>S.No</th>
+                      <th className="border p-2"  style={{border:"1px solid black"}}>Member</th>
                     </tr>
                   </thead>
                   <tbody>
                     {team.team_members.map((member: string, index: number) => (
                       <tr key={index}>
-                        <td className="border p-2">{index + 1}</td>
-                        <td className="border p-2">{member}</td>
+                        <td className="border p-2"  style={{border:"1px solid black"}}>{index + 1}</td>
+                        <td className="border p-2"  style={{border:"1px solid black"}}>{member}</td>
                       </tr>
                     ))}
                   </tbody>
