@@ -1,4 +1,4 @@
-import { Database } from '@/lib copy/schema'
+import { Database } from '@/lib/schema'
 import { Session, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
