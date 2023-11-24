@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+.teams-container {
+  margin-bottom: 20px;
+}
+
+.teams-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.team-item {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.team-name {
+  cursor: pointer;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.team-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -59,21 +90,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #2d1950;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-track:hover {
-  background: #383143;
+  background: #ffffff;
   min-width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(1, 217, 255, 0.911);
+  background: rgb(161, 39, 39);
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(1, 255, 179, 0.959);
+  background: rgba(255, 0, 0, 0.959);
   border-radius: 12px;
 }
 *,
@@ -284,7 +315,6 @@ button,
 [type='submit'] {
   -webkit-appearance: button;
   /* 1 */
-  background-color: transparent;
   /* 2 */
   background-image: none;
   /* 2 */

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import TodoList from "@/components/TodoList";
@@ -9,12 +9,22 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
+  const [hasRenderedOnce, setHasRenderedOnce] = useState(false);
   const session = useSession();
   const supabase = useSupabaseClient();
 
   const handleLoginButtonClick = () => {
     setShowLogin(true);
   };
+
+  useEffect(() => {
+    if (session && !showLogin && !hasRenderedOnce) {
+      // Perform any one-time actions or side effects here
+
+      // Set the flag to true to prevent further renders
+      setHasRenderedOnce(true);
+    }
+  }, [session, showLogin, hasRenderedOnce]);
 
   return (
     <>
@@ -24,29 +34,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full h-full">
+      <div
+        className="w-full h-full bg-black"
+        style={{ background: "white", maxHeight: "100" }}
+      >
         <div className="flex justify-end p-4">
           {!session ? (
             <button
               className={cn(
                 buttonVariants({
                   size: "lg",
-                  className: "border border-zinc-300 hover:bg-blue-600",
+                  className: "btn-black",
                 })
               )}
               onClick={handleLoginButtonClick}
             >
               Login
             </button>
-          ) : (<button
-            className="btn-black w-30 mt-2"
-            onClick={async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) console.log("Error logging out:", error.message);
-            }}
-          >
-            Logout
-          </button>
+          ) : (
+            <button
+              className="btn-black w-30 mt-2"
+              onClick={async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) console.log("Error logging out:", error.message);
+              }}
+            >
+              Logout
+            </button>
           )}
         </div>
 
@@ -67,16 +81,22 @@ export default function Home() {
           </div>
         )}
 
-        {(!session || (!session && !showLogin)) && (
+        {!session && !showLogin && (
           <section
             className="space-y-6 mt-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 h-100"
             style={{ minHeight: "100vh" }}
           >
-            <div className="container flex  flex-col items-center gap-4 text-center">
-              <h1 className="font-heading text-teal-950 text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+            <div className="container flex text-white flex-col items-center gap-4 text-center">
+              <h1
+                className="font-heading text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
+                style={{ color: "orange" }}
+              >
                 To-Do List Webapp
               </h1>
-              <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+              <p
+                className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8"
+                style={{ color: "black", fontSize: "2.5vh" }}
+              >
                 This is a To-Do list webapp created for Naan mudhalvan
                 course(Full Stack Development with Java) by Team 7 of
                 Loyola-ICAM College of Engineering and Technology.
@@ -86,6 +106,7 @@ export default function Home() {
                   href="https://github.com/AntonyJudeShaman"
                   target="_blank"
                   rel="noreferrer"
+                  style={{ color: "white", background: "blue" }}
                   className={cn(
                     buttonVariants({
                       size: "lg",
@@ -102,19 +123,10 @@ export default function Home() {
 
         {session && !showLogin && (
           <div
-            className="w-full h-full flex flex-col justify-center items-center p-4"
+            className="w-full h-full p-4 flex flex-col  items-center "
             style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
           >
             <TodoList session={session} />
-            <button
-              className="btn-black w-full mt-12"
-              onClick={async () => {
-                const { error } = await supabase.auth.signOut();
-                if (error) console.log("Error logging out:", error.message);
-              }}
-            >
-              Logout
-            </button>
           </div>
         )}
       </div>
