@@ -2,7 +2,6 @@ import { Database } from "@/lib/schema";
 import { Session, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Button } from "./ui/button";
 
 type Todos = Database["public"]["Tables"]["todos"]["Row"];
 
@@ -216,6 +215,8 @@ export default function TodoList({ session }: { session: Session }) {
         >
           Todo List
         </button>
+        
+        <h1 className="text-3xl justify-center flex font-bold mb-4">Todo List</h1>
         <button
           className={`btn-black ${activeTab === "team" ? "bg-gray-900" : ""}`}
           onClick={() => setActiveTab("team")}
@@ -226,7 +227,6 @@ export default function TodoList({ session }: { session: Session }) {
 
       {activeTab === "todo" && (
         <div>
-          <h1 className="text-3xl font-bold mb-4">Todo List</h1>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -427,30 +427,30 @@ const Todo = ({
         </div>
         <div className="flex items-center">
           {isEditing ? (
-            <Button
-              className="text-green-500 text-md  hover:text-green-700 te"
+            <button
+              className="text-green-500 text-md h-10 py-2 px-4 rounded-md hover:text-green-700 te"
               onClick={handleSave}
             >
               Save
-            </Button>
+            </button>
           ) : (
             <>
-              <Button
-                className="text-blue-500 text-md bg-blue-100 hover:text-blue-700"
+              <button
+                className="text-blue-500 h-10 py-2 px-4 rounded-md text-md bg-blue-100 hover:text-blue-700"
                 onClick={handleEdit}
               >
                 Edit
-              </Button>
-              <Button
+              </button>
+              <button
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   onDelete();
                 }}
-                className="ml-2 text-red-500 text-md bg-red-100 hover:bg-red-300 hover:text-red-700"
+                className="ml-2 text-red-500 h-10 py-2 px-4 rounded-md text-md bg-red-100 hover:bg-red-300 hover:text-red-700"
               >
                 Delete
-              </Button>
+              </button>
             </>
           )}
         </div>
