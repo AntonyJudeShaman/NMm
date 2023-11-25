@@ -18,9 +18,9 @@ const AboutPage = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Overview</h2>
             <p className="text-gray-700">
-              The Todo List App is more than just a task manager; it's a
+              The Todo List App is more than just a task manager; it&apos;s a
               comprehensive tool designed to empower individuals and teams in
-              achieving their goals. Here's a detailed overview of its key
+              achieving their goals. Here&apos;s a detailed overview of its key
               features:
             </p>
             <ul className="list-disc pl-6 text-gray-700">
