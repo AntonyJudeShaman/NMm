@@ -43,22 +43,21 @@ export default function Login() {
 
         {!session && !showLogin && (
           <div className="p-4 flex flex-col bg-black justify-center items-center w-full">
-            <div className="w-full max-w-xl p-5 rounded-lg text-base bg-34495e text-white">
+            <div className="w-full max-w-xl min-h-screen p-5 rounded-lg text-base bg-34495e text-white">
               
                   <Auth
                     supabaseClient={supabase}
                     appearance={{
                       style: {
                         button: {
-                          background: "#1abc9c", // Change to a fresh green color
+                          background: "#1abc9c", 
                           color: "white",
                           width: "100%",
                           padding: "15px 25px",
-                          borderRadius: "20px", // Increase border radius for a more rounded look
+                          borderRadius: "20px", 
                           cursor: "pointer",
                           border: "none",
-                          boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)", // Increase shadow for a more 3D effect
-                          transition: "all 0.3s ease", // Add transition to all properties for a smoother effect
+                          boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)", 
                         },
                         anchor: {
                           color: "#3498db",

@@ -14,78 +14,77 @@ function Dashboard() {
       <div className="max-w-full min-w-full bg-black" style={{minWidth:"100%"}}>
         <Navbar />
         {!session && (
-         <div className="p-4 flex flex-col justify-center items-center w-full">
-         <div className="w-full max-w-xl p-5 rounded-lg text-base bg-34495e text-white">
+         <div className="p-4 flex min-h-screen flex-col bg-black justify-center items-center w-full">
+         <div className="w-full max-w-xl min-h-screen bg-black p-5 rounded-lg text-base bg-34495e text-white">
            
-               <Auth
-                 supabaseClient={supabase}
-                 appearance={{
-                   style: {
-                     button: {
-                       background: "#1abc9c", // Change to a fresh green color
-                       color: "white",
-                       width: "100%",
-                       padding: "15px 25px",
-                       borderRadius: "20px", // Increase border radius for a more rounded look
-                       cursor: "pointer",
-                       border: "none",
-                       boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)", // Increase shadow for a more 3D effect
-                       transition: "all 0.3s ease", // Add transition to all properties for a smoother effect
-                     },
-                     anchor: {
-                       color: "#3498db",
-                       textDecoration: "none",
-                       fontWeight: "bold",
-                       transition: "color 0.3s ease",
-                     },
-                     container: {
-                       maxWidth: "500px",
-                       justifyContent: "center",
-                       alignContent: "center",
-                       padding: "30px",
-                       borderRadius: "25px",
-                       backgroundColor: "#34495e",
-                       color: "white",
-                     },
-                     divider: {
-                       borderTop: "3px solid #3498db",
-                       margin: "30px 0",
-                     },
-                     label: {
-                       display: "block",
-                       marginBottom: "15px",
-                       color: "#ecf0f1",
-                     },
-                     input: {
-                       width: "100%", 
-                       padding: "15px",
-                       marginBottom: "20px",
-                       border: "2px solid #1abc9c", // Change to a fresh green color
-                       borderRadius: "10px",
-                       transition: "all 0.3s ease", // Add transition to all properties for a smoother effect
-                       color: "white",
-                       backgroundColor: "#2c3e50",
-                     },
+         <Auth
+                    supabaseClient={supabase}
+                    appearance={{
+                      style: {
+                        button: {
+                          background: "#1abc9c", 
+                          color: "white",
+                          width: "100%",
+                          padding: "15px 25px",
+                          borderRadius: "20px", 
+                          cursor: "pointer",
+                          border: "none",
+                          boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)", 
+                        },
+                        anchor: {
+                          color: "#3498db",
+                          textDecoration: "none",
+                          fontWeight: "bold",
+                          transition: "color 0.3s ease",
+                        },
+                        container: {
+                          maxWidth: "500px",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          padding: "30px",
+                          borderRadius: "25px",
+                          backgroundColor: "#34495e",
+                          color: "white",
+                        },
+                        divider: {
+                          borderTop: "3px solid #3498db",
+                          margin: "30px 0",
+                        },
+                        label: {
+                          display: "block",
+                          marginBottom: "15px",
+                          color: "#ecf0f1",
+                        },
+                        input: {
+                          width: "100%", 
+                          padding: "15px",
+                          marginBottom: "20px",
+                          border: "2px solid #1abc9c",
+                          borderRadius: "10px",
+                          transition: "all 0.3s ease",
+                          color: "white",
+                          backgroundColor: "#2c3e50",
+                        },
 
-                     loader: {
-                       display: "inline-block",
-                       border: "4px solid #f3f3f3",
-                       borderTop: "4px solid #3498db",
-                       borderRadius: "50%",
-                       width: "30px",
-                       height: "30px",
-                       animation: "spin 1s linear infinite",
-                     },
-                     message: {
-                       padding: "20px",
-                       margin: "20px 0",
-                       borderRadius: "15px", // Increase border radius for a more rounded look
-                       color: "#fff",
-                       backgroundColor: "#3498db",
-                     },
-                   },
-                 }}
-               />
+                        loader: {
+                          display: "inline-block",
+                          border: "4px solid #f3f3f3",
+                          borderTop: "4px solid #3498db",
+                          borderRadius: "50%",
+                          width: "30px",
+                          height: "30px",
+                          animation: "spin 1s linear infinite",
+                        },
+                        message: {
+                          padding: "20px",
+                          margin: "20px 0",
+                          borderRadius: "15px", 
+                          color: "#fff",
+                          backgroundColor: "#3498db",
+                        },
+                      },
+                    }}
+                  />
          </div>
        </div>
 
