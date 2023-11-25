@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-todo-list",
+  "name": "AJS todo-list",
   "version": "2.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@next/font": "13.1.6",
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/auth-ui-react": "^0.2.8",

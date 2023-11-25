@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils";
 import logo from "@/components/log.svg";
 import Image from "next/image";
 import { SiteFooter } from "@/components/site-footer";
-import Particles from "@/components/particles";
+import Navbar from "@/components/navbar";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -41,8 +42,9 @@ export default function Home() {
       <div
         className="w-full h-full"
         style={{ background: "white", maxHeight: "100" }}
-      >
-        <div className="flex justify-end p-4 ">
+      ><Navbar/>
+        {/* <div className="flex justify-end p-4 ">
+          
           {!session ? (
             <button
               className="btn-black h-11 px-8 rounded-md"
@@ -55,13 +57,13 @@ export default function Home() {
               className="btn-black w-30 mt-2"
               onClick={async () => {
                 const { error } = await supabase.auth.signOut();
-                if (error) console.log("Error logging out:", error.message);
+                if (error) toast.error("Error logging out");
               }}
             >
               Logout
             </button>
           )}
-        </div>
+        </div> */}
         {!session && showLogin && (
           <div className="min-w-full min-h-screen flex items-center justify-center">
             <div className="w-full h-full flex justify-center items-center p-4">
@@ -78,7 +80,6 @@ export default function Home() {
             </div>
           </div>
         )}
-        {!session && !showLogin && (
           <div className="p-4 ">
             <section
               className=" flex justify-center mt-4"
@@ -106,10 +107,9 @@ export default function Home() {
                     rel="noreferrer"
                     style={{
                       color: "white",
-                      background: "blue",
                       border: "2px solid black",
                     }}
-                    className="border border-zinc-300 py-4 px-8 rounded-lg hover:bg-blue-600"
+                    className="btn-black p-4 bg-blue-600 hover:bg-blue-500"
                   >
                     GitHub
                   </Link>
@@ -121,6 +121,7 @@ export default function Home() {
                     maxWidth: 800,
                     margin: "auto",
                     border: "1px solid black",
+                    color:"black"
                   }}
                 >
                   <thead>
@@ -302,15 +303,6 @@ export default function Home() {
 
             <SiteFooter />
           </div>
-        )}
-        {session && !showLogin && (
-          <div
-            className="w-full h-full p-4 flex flex-col  items-center "
-            style={{ minWidth: 250, maxWidth: 800, margin: "auto" }}
-          >
-            <TodoList session={session} />
-          </div>
-        )}
       </div>
     </>
   );

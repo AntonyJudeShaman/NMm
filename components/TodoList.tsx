@@ -1,5 +1,6 @@
 import { Database } from "@/lib/schema";
 import { Session, useSupabaseClient } from "@supabase/auth-helpers-react";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -124,6 +125,23 @@ export default function TodoList({ session }: { session: Session }) {
     fetchTodos();
   }, [supabase, filter]);
 
+  const handleDeleteTeam = async (teamId: string) => {
+    try {
+      await supabase
+        .from("teams")
+        .delete()
+        .eq("id", teamId.toString())
+        .throwOnError();
+  
+      toast.success("Team deleted successfully!");
+      fetchTeamDetails(); // Assuming this function fetches and updates team details
+    } catch (error) {
+      toast.error("Error deleting the team. Please try again later.");
+    }
+  };
+  
+  
+
   const addTodo = async (taskText: string) => {
     let task = taskText.trim();
     if (task.length) {
@@ -208,17 +226,22 @@ export default function TodoList({ session }: { session: Session }) {
   };
   return (
     <div className="w-full" style={{ paddingTop: "-10vh" }}>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <div className="flex justify-between mb-4">
         <button
-          className={`btn-black ${activeTab === "todo" ? "bg-gray-900" : ""}`}
+          className={`btn-black ${activeTab === "todo" ? "bg-gray-900" : "bg-blue-600"}`}
           onClick={() => setActiveTab("todo")}
         >
           Todo List
         </button>
-        
-        <h1 className="text-3xl justify-center flex font-bold mb-4">Todo List</h1>
+
+        <h1 className="text-3xl justify-center flex font-bold mb-4">
+          Todo List
+        </h1>
         <button
-          className={`btn-black ${activeTab === "team" ? "bg-gray-900" : ""}`}
+          className={`btn-black ${activeTab === "team" ? "bg-gray-900" : "bg-blue-600"}`}
           onClick={() => setActiveTab("team")}
         >
           Your team
@@ -244,7 +267,7 @@ export default function TodoList({ session }: { session: Session }) {
                 setNewTaskText(e.target.value);
               }}
             />
-            <button className="btn-black" type="submit">
+            <button className="btn-black bg-green-600 hover:bg-green-500" type="submit">
               Add
             </button>
           </form>
@@ -302,72 +325,131 @@ export default function TodoList({ session }: { session: Session }) {
               onChange={handleTeamMemberChange}
             />
           </div>
-
-          <div className="flex gap-2 float-right justify-center mt-6 flex-row">
-            <button
-              className="btn-black"
-              type="button"
-              onClick={handleAddTeamMember}
-            >
-              Add Member
-            </button>
-            <button
-              className="btn-black"
-              type="button"
-              onClick={handleSaveTeam}
-            >
-              Save Team
-            </button>
-          </div>
-
-          {teamMembers.length > 0 && (
-            <div className="my-4">
-              <h2 className="text-lg mb-4 font-bold">Team Members</h2>
-              <table className="border-collapse border w-full">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border p-2">S.No</th>
-                    <th className="border p-2">Member</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teamMembers.map((member, index) => (
-                    <tr key={index}  style={{border:"1px solid black"}}>
-                      <td className="border p-2" style={{border:"1px solid black"}}>{index + 1}</td>
-                      <td className="border p-2"  style={{border:"1px solid black"}}>{member}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="flex flex-col">
+            <div className="flex gap-2 float-right justify-center mt-6 flex-row">
+              <button
+                className="btn-black bg-blue-600 hover:bg-blue-500"
+                type="button"
+                onClick={handleAddTeamMember}
+              >
+                Add Member
+              </button>
+              <button
+                className="btn-black bg-green-600 hover:bg-green-500"
+                type="button"
+                onClick={handleSaveTeam}
+              >
+                Save Team
+              </button>
             </div>
-          )}
-
-          {teamDetails &&
-            teamDetails.length > 0 &&
-            teamDetails.map((team: any, teamIndex: number) => (
-              <div key={teamIndex} className="my-4 flex flex-col justify-center" >
-                {/* <h1 className="text-lg mb-4 mt-4 font-bold">Team Members</h1> */}
-                <h3 className="text-mg mb-4 mt-4 font-bold rounded-lg p-2 mx-auto flex items-center justify-center w-1/2 bg-gray-200"  style={{border:"1px solid black"}}>
-                  Team Name:&nbsp; <span style={{color:"orange",fontSize:"2.5vh"}}> {team.team_name}</span>
-                </h3>
-                <table className="border-collapse  border w-full"  style={{border:"1px solid black"}}>
-                  <thead>
-                    <tr className="bg-gray-200 "  style={{border:"1px solid black"}}>
-                      <th className="border p-2"  style={{border:"1px solid black"}}>S.No</th>
-                      <th className="border p-2"  style={{border:"1px solid black"}}>Member</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {team.team_members.map((member: string, index: number) => (
-                      <tr key={index}>
-                        <td className="border p-2"  style={{border:"1px solid black"}}>{index + 1}</td>
-                        <td className="border p-2"  style={{border:"1px solid black"}}>{member}</td>
+            <div>
+              {teamMembers.length > 0 && (
+                <div className="my-4">
+                  <h2 className="text-lg mb-4 font-bold">Team Members</h2>
+                  <table className="border-collapse border w-full">
+                    <thead>
+                      <tr className="bg-gray-200">
+                        <th className="border p-2">S.No</th>
+                        <th className="border p-2">Member</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
+                    </thead>
+                    <tbody>
+                      {teamMembers.map((member, index) => (
+                        <tr key={index} style={{ border: "1px solid black" }}>
+                          <td
+                            className="border p-2"
+                            style={{ border: "1px solid black" }}
+                          >
+                            {index + 1}
+                          </td>
+                          <td
+                            className="border p-2"
+                            style={{ border: "1px solid black" }}
+                          >
+                            {member}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+            <div>
+              {teamDetails &&
+                teamDetails.length > 0 &&
+                teamDetails.map((team: any, teamIndex: number) => (
+                  <div
+                    key={teamIndex}
+                    className="my-4 flex flex-col justify-center"
+                  >
+                    {/* <h1 className="text-lg mb-4 mt-4 font-bold">Team Members</h1> */}
+                    <h3
+                      className="text-mg mb-4 mt-4 font-bold rounded-lg p-2 mx-auto flex items-center justify-center w-1/2 bg-gray-200"
+                      style={{ border: "1px solid black" }}
+                    >
+                      Team Name:&nbsp;{" "}
+                      <span style={{ color: "orange", fontSize: "2.5vh" }}>
+                        {" "}
+                        {team.team_name}
+                      </span>
+                    </h3>
+                    <table
+                      className="border-collapse mb-4 border w-full"
+                      style={{ border: "1px solid black" }}
+                    >
+                      <thead>
+                        <tr
+                          className="bg-gray-200 "
+                          style={{ border: "1px solid black" }}
+                        >
+                          <th
+                            className="border p-2"
+                            style={{ border: "1px solid black" }}
+                          >
+                            S.No
+                          </th>
+                          <th
+                            className="border p-2"
+                            style={{ border: "1px solid black" }}
+                          >
+                            Member
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {team.team_members.map(
+                          (member: string, index: number) => (
+                            <tr key={index}>
+                              <td
+                                className="border p-2"
+                                style={{ border: "1px solid black" }}
+                              >
+                                {index + 1}
+                              </td>
+                              <td
+                                className="border p-2"
+                                style={{ border: "1px solid black" }}
+                              >
+                                {member}
+                              </td>
+                            </tr>
+                          )
+                        )}
+                      </tbody>
+                    </table>
+                    <button
+                      className="btn-black bg-red-600 hover:bg-red-500 shadow rounded-xl p-4 w-30 items-end justify-end"
+                      type="button"
+                      style={{  margin: "auto" }}
+                      onClick={() => handleDeleteTeam(team.id)}
+                    >
+                      Leave Team
+                    </button>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
       )}
       <Toaster />
@@ -428,7 +510,7 @@ const Todo = ({
         <div className="flex items-center">
           {isEditing ? (
             <button
-              className="text-green-500 text-md h-10 py-2 px-4 rounded-md hover:text-green-700 te"
+              className="text-green-500 bg-green-100 hover:bg-green-300 text-md h-10 py-2 px-4 rounded-md hover:text-green-700 te"
               onClick={handleSave}
             >
               Save
@@ -436,7 +518,7 @@ const Todo = ({
           ) : (
             <>
               <button
-                className="text-blue-500 h-10 py-2 px-4 rounded-md text-md bg-blue-100 hover:text-blue-700"
+                className="text-blue-500 h-10 py-2 px-4 rounded-md text-md bg-blue-100 hover:bg-blue-300 hover:text-blue-700"
                 onClick={handleEdit}
               >
                 Edit

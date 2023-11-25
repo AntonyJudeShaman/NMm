@@ -4,7 +4,7 @@
 
 /* Write your own custom component styles here */
 .btn-black {
-  @apply border border-black bg-black text-white font-bold py-2 px-4 rounded text-center;
+  @apply border border-black  text-white font-bold py-2 px-4 rounded text-center;
 }
 .btn-black:hover {
   @apply transition duration-150 bg-white text-black;
@@ -13,7 +13,7 @@
   @apply border border-black text-black py-2 px-4 rounded font-bold text-center;
 }
 .btn-black-outline:hover {
-  @apply transition duration-150 bg-black text-white;
+  @apply transition duration-150  text-white;
 }
 
 html,

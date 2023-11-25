@@ -13,7 +13,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
     <footer className={cn(className)} style={{}}>
       <div
         style={{ border: "1px solid red" }}
-        className="container flex flex-row bg-red-100 rounded-md p-4 items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0"
+        className="container flex flex-row mt-10 bg-gray-200 rounded-md p-4 items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0"
       >
         <div className="flex flex-row items-center gap-4 px-8 space-x-5 md:flex-row md:gap-2 md:px-0">
           <Image src={logo} className="w-20" alt="Jude" />
@@ -25,12 +25,12 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         <div className="flex flex-row space-x-4 items-center">
           <Link href="https://github.com/AntonyJudeShaman" target="_blank">
             <button
-              className="h-8 w-8 px-1"
+              className="h-10 w-10 px-1 text-lg"
               style={{ background: "transparent" }}
             >
               <img
-                width="40"
-                height="40"
+                width="50"
+                height="50"
                 src="https://img.icons8.com/ios/50/github--v1.png"
                 alt="github--v1"
               />
@@ -41,12 +41,12 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             target="_blank"
           >
             <button
-              className="h-8 w-8 px-1 mr-0 xl:mr-16 2xl:mr-16"
+              className="h-10 w-10 px-1 mr-0 xl:mr-16 2xl:mr-16"
               style={{ background: "transparent" }}
             >
               <img
-                width="40"
-                height="40"
+                width="50"
+                height="50"
                 src="https://img.icons8.com/ios/50/linkedin.png"
                 alt="linkedin"
               />
