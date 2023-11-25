@@ -292,7 +292,7 @@ export default function Home() {
                     <div className="space-y-2">
                       <h3 className="font-bold text-lg">Authentication</h3>
                       <p className=" text-muted-foreground">
-                        Authentication using Supabase and middlewares. Maintains
+                        Authentication using JWT and middlewares. Maintains
                         session between the pages.
                       </p>
                     </div>
