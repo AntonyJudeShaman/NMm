@@ -38,9 +38,9 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor: "#34495e",}}>
         <Toolbar>
-          <Typography variant="h6">To-Do List</Typography>
+          <Typography variant="h6" className="font-bold" style={{fontWeight:"bold"}}>To-Do List</Typography>
           <div className="hidden md:flex md:justify-end md:flex-row md:items-center md:flex-grow">
             <Link
               className="hover:bg-blue-600 rounded p-2"
@@ -88,7 +88,7 @@ const Navbar = () => {
             </Link>
             {!session ? (
               <button
-                className="btn-black h-11 bg-black items-center hover:bg-zinc-900 hover:text-zinc-200 px-8 rounded-md"
+                className="btn-black h-11 bg-green-600 items-center hover:bg-green-700 hover:text-zinc-200 px-8 rounded-md"
                 onClick={handleLoginButtonClick}
               >
                 Login

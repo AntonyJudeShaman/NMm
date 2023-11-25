@@ -7,7 +7,7 @@ const AboutPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="container bg-white min-h-screen mx-auto p-4">
         <Head>
           <title>About</title>
         </Head>

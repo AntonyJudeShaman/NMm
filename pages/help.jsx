@@ -7,7 +7,7 @@ const HelpPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="container bg-white mx-auto p-4 min-h-screen">
         <Head>
           <title>Help</title>
         </Head>

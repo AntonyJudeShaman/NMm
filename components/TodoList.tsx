@@ -225,13 +225,13 @@ export default function TodoList({ session }: { session: Session }) {
     }
   };
   return (
-    <div className="w-full" style={{ paddingTop: "-10vh" }}>
+    <div className="w-full mt-10 min-h-screen items-center" style={{maxWidth:800}}>
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between mb-4" style={{maxWidth:800}}>
         <button
-          className={`btn-black ${activeTab === "todo" ? "bg-gray-900" : "bg-blue-600"}`}
+          className={`btn-black ${activeTab === "todo" ? "bg-orange-600" : "bg-blue-600"}`}
           onClick={() => setActiveTab("todo")}
         >
           Todo List
@@ -241,7 +241,7 @@ export default function TodoList({ session }: { session: Session }) {
           Todo List
         </h1>
         <button
-          className={`btn-black ${activeTab === "team" ? "bg-gray-900" : "bg-blue-600"}`}
+          className={`btn-black ${activeTab === "team" ? "bg-orange-600" : "bg-blue-600"}`}
           onClick={() => setActiveTab("team")}
         >
           Your team
@@ -249,7 +249,7 @@ export default function TodoList({ session }: { session: Session }) {
       </div>
 
       {activeTab === "todo" && (
-        <div>
+        <div style={{maxWidth:800}}>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -273,7 +273,7 @@ export default function TodoList({ session }: { session: Session }) {
           </form>
 
           <div className="flex items-center mt-4">
-            <span className="mr-2">Show:</span>
+            <span className="mr-2 text-black font-bold">Show:</span>
             <select
               value={filter}
               onChange={(e) => {
@@ -306,7 +306,7 @@ export default function TodoList({ session }: { session: Session }) {
         </div>
       )}
       {activeTab === "team" && (
-        <div>
+        <div style={{maxWidth:800}}>
           <div className="flex gap-2 mt-6 my-2 flex-row">
             <input
               className="rounded p-2 w-1/2"
@@ -346,9 +346,9 @@ export default function TodoList({ session }: { session: Session }) {
               {teamMembers.length > 0 && (
                 <div className="my-4">
                   <h2 className="text-lg mb-4 font-bold">Team Members</h2>
-                  <table className="border-collapse border w-full">
+                  <table className="border-collapse text-black border w-full">
                     <thead>
-                      <tr className="bg-gray-200">
+                      <tr className="bg-orange-600">
                         <th className="border p-2">S.No</th>
                         <th className="border p-2">Member</th>
                       </tr>
@@ -395,12 +395,12 @@ export default function TodoList({ session }: { session: Session }) {
                       </span>
                     </h3>
                     <table
-                      className="border-collapse mb-4 border w-full"
+                      className="border-collapse text-black mb-4 border w-full"
                       style={{ border: "1px solid black" }}
                     >
                       <thead>
                         <tr
-                          className="bg-gray-200 "
+                          className="bg-orange-600"
                           style={{ border: "1px solid black" }}
                         >
                           <th
