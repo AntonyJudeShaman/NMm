@@ -23,9 +23,9 @@ const HelpPage = () => {
             </p>
             <ul className="list-disc pl-6 text-gray-700">
               <li>Use the Todo List tab to manage your tasks.</li>
-              <li>Click on "Add" to create a new task.</li>
+              <li>Click on &quot;Add&quot; to create a new task.</li>
               <li>
-                Toggle between "All," "Completed," and "Incomplete" to filter
+                Toggle between &quot;All,&quot; &quot;Completed,&quot; and &quot;Incomplete&quot; to filter
                 your tasks.
               </li>
             </ul>
@@ -33,14 +33,14 @@ const HelpPage = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Team Management</h2>
             <p className="text-gray-700">
-              Explore the "Your Team" tab to manage your team:
+              Explore the &quot;Your Team&quot; tab to manage your team:
             </p>
             <ul className="list-disc pl-6 text-gray-700">
               <li>
-                Add team members by entering their names and clicking "Add
-                Member."
+                Add team members by entering their names and clicking &quot;Add
+                Member.&quot;
               </li>
-              <li>Save your team information by clicking "Save Team."</li>
+              <li>Save your team information by clicking &quot;Save Team.&quot;</li>
               <li>View and leave existing teams.</li>
             </ul>
           </section>
